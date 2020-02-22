@@ -1,10 +1,9 @@
 # swagger-fixtures
 
-
 [![Build Status](https://travis-ci.org/AndrewKeig/swagger-fixtures.svg?branch=master)](https://travis-ci.org/AndrewKeig/swagger-fixtures)
 
-
 ### Introduction
+
 swagger-fixtures, generate a test fixture from the definitions, property examples in your swagger document.
 
 ### Swagger/Open API Specification
@@ -25,10 +24,10 @@ const swaggerFixture = require('swagger-fixtures');
 const fixture = swaggerFixture(swagger.definitions.User);
 ```
 
-Based on the below swagger doc, we will  get an object like so, which can be used as a test fixture:
+Based on the below swagger doc, we will get an object like so, which can be used as a test fixture:
 
 ```js
-const expected = {
+const fixture = {
   id: '12345',
   username: 'airasoul',
   firstName: 'andrew',
@@ -43,7 +42,7 @@ const expected = {
 
 Example swagger doc:
 
-```json
+```js
 {
 	"definitions": {
 		"User": {
@@ -113,4 +112,3 @@ Example swagger doc:
 	}
 }
 ```
-
