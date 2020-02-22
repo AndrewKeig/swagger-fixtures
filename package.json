@@ -1,0 +1,55 @@
+{
+  "name": "swagger-fixtures",
+  "version": "1.0.0",
+  "description": "swagger-fixtures, generate a test fixture from the definition properties examples in your swagger doc",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test:watch": "jest --watch",
+    "lint": "eslint '*.js'",
+    "fix": "prettier --write '*.js'",
+    "test": "jest --verbose",
+    "coverage": "jest --coverage"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.7.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1"
+  },
+  "keywords": [
+    "json",
+    "swagger",
+    "jsonschema",
+    "fake",
+    "mocks",
+    "test",
+    "oas"
+  ],
+  "author": "Andrew keig <andrew.keig@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewkeig/swagger-fixtures.git"
+  }
+}
