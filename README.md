@@ -39,6 +39,7 @@ const expected = {
   dimensions: { weight: 180, height: 120 },
   phones: [{ number: '07943818181' }],
 };
+```
 
 Example swagger doc:
 
