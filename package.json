@@ -1,6 +1,6 @@
 {
   "name": "swagger-fixtures",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "swagger-fixtures, generate a test fixture from the definition properties examples in your swagger doc",
   "main": "index.js",
   "scripts": {

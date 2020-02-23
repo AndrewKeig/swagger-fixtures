@@ -12,6 +12,18 @@ Swagger, allows you to define within your swagger document, examples, this modul
 
 If a property has no example, we set this to null.
 
+Supports, swagger types:
+
+```
+object
+array
+boolean
+string
+number
+integer
+ref
+```
+
 ### Install
 
 `npm install swagger-fixtures`
@@ -21,7 +33,7 @@ If a property has no example, we set this to null.
 ```
 const swagger = require('./swagger.json');
 const swaggerFixture = require('swagger-fixtures');
-const fixture = swaggerFixture(swagger.definitions.User);
+const fixture = swaggerFixture(swagger, 'User');
 ```
 
 Based on the below swagger doc, we will get an object like so, which can be used as a test fixture:
@@ -35,8 +47,11 @@ const fixture = {
   email: 'andrew.keig@gmail.com',
   password: 'password',
   userStatus: '1',
+  bornDay: 'Monday',
   dimensions: { weight: 180, height: 120 },
+  isHappy: false,
   phones: [{ number: '07943818181' }],
+  address: { street: 'no 4', postcode: 'w1' },
 };
 ```
 
@@ -44,71 +59,116 @@ Example swagger doc:
 
 ```js
 {
-	"definitions": {
-		"User": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"type": "integer",
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string",
+          "example": "no 4"
+        },
+        "postcode": {
+          "type": "string",
+          "example": "w1"
+        }
+      }
+    },
+    "DayOfWeek": {
+      "title": "DayOfWeek",
+      "description": "Day of the Week",
+      "type": "string",
+      "example": "Monday",
+      "enum": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
           "format": "int64",
           "example": "12345"
-				},
-				"username": {
+        },
+        "username": {
           "type": "string",
           "example": "airasoul"
-				},
-				"firstName": {
+        },
+        "firstName": {
           "type": "string",
           "example": "andrew"
-				},
-				"lastName": {
+        },
+        "lastName": {
           "type": "string",
           "example": "keig"
-				},
-				"email": {
+        },
+        "email": {
           "type": "string",
           "example": "andrew.keig@gmail.com"
-				},
-				"password": {
-					"type": "string",
+        },
+        "password": {
+          "type": "string",
           "example": "password"
-				},
-        "phones" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "number" : {
-                "description" : "List of phone numbers",
-                "example" : "07943818181",
-                "type" : "string"
+        },
+        "isHappy": {
+          "description": "Set it to True andrew is happy.",
+          "example": false,
+          "type": "boolean",
+          "default": false
+        },
+        "bornDay": {
+          "$ref": "#/definitions/DayOfWeek"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "phones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "number": {
+                "description": "List of phone numbers",
+                "example": "07943818181",
+                "type": "string"
               }
             }
           }
         },
-        "dimensions" : {
-          "type" : "object",
-          "properties" : {
-            "weight" : {
-              "description" : "weight in kg",
-              "example" : 180,
-              "type" : "number"
+        "dimensions": {
+          "type": "object",
+          "properties": {
+            "weight": {
+              "description": "weight in kg",
+              "example": 180,
+              "type": "number"
             },
-            "height" : {
-              "description" : "height in metres",
-              "example" : 120,
-              "type" : "number"
+            "height": {
+              "description": "height in metres",
+              "example": 120,
+              "type": "number"
             }
           }
         },
-				"userStatus": {
-					"type": "integer",
-					"format": "int32",
+        "userStatus": {
+          "type": "integer",
+          "format": "int32",
           "description": "User Status",
           "example": "1"
-				}
-			}
-		}
-	}
+        }
+      }
+    }
+  }
 }
+
 ```
+
+### Test
+
+`npm test`
+
+### Lint
+
+`npm run lint`
+
+### coverage
+
+`npm run coverage`

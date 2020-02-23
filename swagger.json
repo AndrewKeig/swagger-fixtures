@@ -1,68 +1,100 @@
 {
-	"definitions": {
-		"User": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"type": "integer",
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string",
+          "example": "no 4"
+        },
+        "postcode": {
+          "type": "string",
+          "example": "w1"
+        }
+      }
+    },
+    "DayOfWeek": {
+      "title": "DayOfWeek",
+      "description": "Day of the Week",
+      "type": "string",
+      "example": "Monday",
+      "enum": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
           "format": "int64",
           "example": "12345"
-				},
-				"username": {
+        },
+        "username": {
           "type": "string",
           "example": "airasoul"
-				},
-				"firstName": {
+        },
+        "firstName": {
           "type": "string",
           "example": "andrew"
-				},
-				"lastName": {
+        },
+        "lastName": {
           "type": "string",
           "example": "keig"
-				},
-				"email": {
+        },
+        "email": {
           "type": "string",
           "example": "andrew.keig@gmail.com"
-				},
-				"password": {
-					"type": "string",
+        },
+        "password": {
+          "type": "string",
           "example": "password"
-				},
-        "phones" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "number" : {
-                "description" : "List of phone numbers",
-                "example" : "07943818181",
-                "type" : "string"
+        },
+        "isHappy": {
+          "description": "Set it to True andrew is happy.",
+          "example": false,
+          "type": "boolean",
+          "default": false
+        },
+        "bornDay": {
+          "$ref": "#/definitions/DayOfWeek"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "phones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "number": {
+                "description": "List of phone numbers",
+                "example": "07943818181",
+                "type": "string"
               }
             }
           }
         },
-        "dimensions" : {
-          "type" : "object",
-          "properties" : {
-            "weight" : {
-              "description" : "weight in kg",
-              "example" : 180,
-              "type" : "number"
+        "dimensions": {
+          "type": "object",
+          "properties": {
+            "weight": {
+              "description": "weight in kg",
+              "example": 180,
+              "type": "number"
             },
-            "height" : {
-              "description" : "height in metres",
-              "example" : 120,
-              "type" : "number"
+            "height": {
+              "description": "height in metres",
+              "example": 120,
+              "type": "number"
             }
           }
         },
-				"userStatus": {
-					"type": "integer",
-					"format": "int32",
+        "userStatus": {
+          "type": "integer",
+          "format": "int32",
           "description": "User Status",
           "example": "1"
-				}
-			}
-		}
-	}
+        }
+      }
+    }
+  }
 }
