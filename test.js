@@ -307,3 +307,32 @@ describe('when swagger doc contains definitions with properties and examples', (
     done();
   });
 });
+
+describe('when swagger doc contains an array of strings', () => {
+  test('should return a json object with an array of strings', async done => {
+    const data = {
+      properties: {
+        developmentPhotoURLs: {
+          description: 'List of development photo URLs',
+          type: 'array',
+          example: 'https://www.goog.le/defaultPhoto.jpg',
+          items: {
+            type: 'string',
+            minLength: 10,
+            maxLength: 100,
+            pattern: '^https\\:\\/\\/.*',
+            example: 'https://www.goog.le/defaultPhoto.jpg',
+          },
+          minItems: 1,
+          maxItems: 10,
+        },
+      },
+    };
+
+    const fixture = swaggerFixture(data);
+    const expected = { developmentPhotoURLs: ['https://www.goog.le/defaultPhoto.jpg'] };
+
+    expect(fixture).toEqual(expected);
+    done();
+  });
+});

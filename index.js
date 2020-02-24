@@ -59,7 +59,11 @@ module.exports = function swaggerFixtures(swagger, type) {
   }
 
   function onHandleArray(def) {
-    return [processDefinition(def)];
+    if (def.properties) {
+      return [processDefinition(def)];
+    }
+
+    return [getValueForType(def)];
   }
 
   function getValueForType(property) {
